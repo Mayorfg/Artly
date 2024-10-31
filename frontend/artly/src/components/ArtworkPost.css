@@ -1,0 +1,21 @@
+/* src/components/ArtworkPost.css */
+.artwork-post {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+.artwork-header {
+  display: flex;
+  align-items: center;
+}
+.artist-profile-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.artwork-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}

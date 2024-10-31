@@ -1,0 +1,19 @@
+/* src/components/NavBar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.navbar-left .logo {
+  width: 50px;
+}
+.navbar-center .nav-button {
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+.navbar-right .profile-icon {
+  width: 40px;
+  cursor: pointer;
+}

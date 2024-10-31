@@ -1,0 +1,13 @@
+/* src/pages/UserProfile.css */
+/*.user-profile {*/
+  /* Add styles for the profile page container */
+/*}*/
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-image-upload {
+  margin-top: 10px;
+}
