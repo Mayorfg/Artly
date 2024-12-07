@@ -6,6 +6,11 @@ import { useHistory } from 'react-router-dom';
 const ArtworkPost = ({ artwork }) => {
   const history = useHistory();
 
+  // Convert binary data to a base64 image URL
+  const imageSrc = artwork.image_data
+    ? `data:image/png;base64,${artwork.image_data}`
+    : null; // Add a fallback if needed
+
   const handlePurchase = () => {
     // Get the purchase token
     api.get(`/purchase/token/${artwork.post_id}`, {
@@ -20,7 +25,7 @@ const ArtworkPost = ({ artwork }) => {
 
   return (
     <div className="artwork-post">
-      <img src={artwork.image_url} alt={artwork.title} />
+      <img src={artwork.image_data} alt={artwork.title} />
       <h3>{artwork.title}</h3>
       <p>{artwork.description}</p>
       <p>By: {artwork.User.name}</p>

@@ -10,7 +10,7 @@ User.init({
   email: { type: DataTypes.STRING(100), allowNull: false, unique: true },
   password: { type: DataTypes.STRING(100), allowNull: false },
   role: { type: DataTypes.STRING(20), allowNull: false, defaultValue: 'user' },
-  profile_picture_url: { type: DataTypes.STRING },
+  profile_picture_data: { type: DataTypes.BLOB },
 }, {
   sequelize,
   modelName: 'User',

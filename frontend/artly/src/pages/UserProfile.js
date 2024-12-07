@@ -20,7 +20,17 @@ const UserProfile = () => {
   useEffect(() => {
     // Fetch user profile data
     api.get(`/users/profile/${user_id}`)
-      .then(response => setUserProfile(response.data))
+      .then(response => {
+        const userData = response.data; 
+        console.log(response)
+        if (typeof userData.profile_picture_data === 'string' && !userData.profile_picture_data.startsWith('data:image')) {
+          // Convert binary data to base64 and prepend the data URI
+          userData.profile_picture_data = `data:image/png;base64,${userData.profile_picture_data}`;
+        }
+        setUserProfile(userData);
+        //console.log(userProfile)
+        //console.log(response.data);
+      })
       .catch(error => console.error(error));
 
     // Fetch artworks by the user
@@ -32,10 +42,16 @@ const UserProfile = () => {
     const token = localStorage.getItem('token');
     if (token) {
       const decoded = jwtDecode(token);
-      console.log(decoded);
+      //console.log(decoded);
       setCurrentUserId(isAuthenticated.user.user_id );
     }
   }, [user_id]);
+
+  // Convert binary data to a base64 image URL
+  const imageSrc = userProfile.profile_picture_data
+    ? userProfile.profile_picture_data
+    //? `data:image/png;base64,${userProfile.profile_picture_data}`
+    : defaultProfileIcon; // Add a fallback if needed
 
   // Handle file selection for profile image upload
   const handleFileChange = (e) => {
@@ -53,8 +69,9 @@ const UserProfile = () => {
       },
     })
       .then(response => {
-        setUserProfile({ ...userProfile, profile_picture_url: response.data.profile_picture_url });
-        setSelectedFile(null);
+        window.location.reload();
+        //setUserProfile({ ...userProfile, profile_picture_data: response.data.profile_picture_data });
+        //setSelectedFile(null);
       })
       .catch(error => console.error(error));
   };
@@ -65,7 +82,7 @@ const UserProfile = () => {
     <div className="user-profile">
       <h2>{userProfile.name}</h2>
       <img
-        src={userProfile.profile_picture_url || defaultProfileIcon}
+        src={userProfile.profile_picture_data || defaultProfileIcon}
         alt="Profile"
         className="profile-picture"
       />

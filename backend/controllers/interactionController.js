@@ -32,7 +32,7 @@ exports.getInteractionsByPost = async (req, res) => {
   try {
     const interactions = await Interaction.findAll({
       where: { post_id: req.params.post_id },
-      include: [{ model: User, attributes: ['name', 'profile_picture_url'] }],
+      include: [{ model: User, attributes: ['name', 'profile_picture_data'] }],
     });
     res.json(interactions);
   } catch (error) {

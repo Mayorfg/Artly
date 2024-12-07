@@ -1,0 +1,66 @@
+.register-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form input {
+    width:  300px;
+    max-width: 500px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.register-form select {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 7px;
+    color: black;
+    background-color: rgb(170, 170, 170);
+}
+
+.register-form button {
+    padding: 5px;
+    margin: 10px;
+    border-radius: 7px;
+    color: black;
+    background-color: rgb(170, 170, 170);
+}
+
+.login-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form input {
+    width:  300px;
+    max-width: 500px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.login-form a {
+    padding: 1px;
+    margin: 5px;
+    border-radius: 7px;
+    color: black;
+    text-decoration: none;
+}
+
+.login-form a :hover {
+    text-decoration: underline;
+    font-size: bold;
+    cursor: pointer;
+}
+
+.login-form button {
+    padding: 5px;
+    margin: 10px;
+    border-radius: 7px;
+    border-color: grey;
+    background-color: rgb(170, 170, 170);
+    color: black;
+}

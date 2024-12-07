@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import './PostArtwork.css';
+import { Container } from 'react-bootstrap';
 
 const PostArtwork = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    image_url: '',
+    image_data: '',
     tags: '',
   });
   const navigate = useNavigate();
@@ -26,14 +28,16 @@ const PostArtwork = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Container className='post-artwork-container'> 
+    <form onSubmit={handleSubmit} className='post-artwork-form'>
       <h2>Post New Artwork</h2>
+      <input type='file' accept='image/*' name="image_data" onChange={handleChange} required />
       <input name="title" placeholder="Title" onChange={handleChange} required />
       <textarea name="description" placeholder="Description" onChange={handleChange} />
-      <input name="image_url" placeholder="Image URL" onChange={handleChange} required />
       <input name="tags" placeholder="Tags (comma-separated)" onChange={handleChange} />
-      <button type="submit">Post Artwork</button>
+      <button type="submit">Post</button>
     </form>
+    </Container>
   );
 };
 

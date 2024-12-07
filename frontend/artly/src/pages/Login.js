@@ -4,6 +4,7 @@ import api from '../services/api';
 import { login } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import './Register.css';
 import useAuth from '../hooks/useAuth';
 
 const Login = () => {
@@ -45,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='login-form'>
       {/* Input fields for email and password */}
       <h2>Login</h2>
       <input
@@ -64,6 +65,7 @@ const Login = () => {
         onChange={handleChange}
         required
       />
+      <a href='#..' >Forgot password? </a>
       <button type="submit">Login</button>
     </form>
   );

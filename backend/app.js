@@ -20,7 +20,7 @@ const savedArtworkRoutes = require('./routes/savedArtworks');
 const app = express();
 
 // Apply CORS middleware
-app.use(cors());
+app.use(cors({ origin: '*'}));
 
 // Parse JSON bodies
 app.use(express.json());
@@ -54,7 +54,7 @@ app.use('/api/saved-artworks', savedArtworkRoutes);
 // Sync Database and Start Server
 sequelize.sync({ alter: true }).then(() => {
   const PORT = process.env.PORT || 5001;
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
   });
 }).catch(err => {

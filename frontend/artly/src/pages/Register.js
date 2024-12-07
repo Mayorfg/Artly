@@ -1,8 +1,9 @@
-// src/pages/Register.js
+ // src/pages/Register.js
 import React, { useContext, useState } from 'react';
 import { register } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import './Register.css';
 
 
 const Register = () => {
@@ -38,7 +39,7 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='register-form'>
       {/* Input fields for name, email, password, role */}
       <h2>Register</h2>
       <input

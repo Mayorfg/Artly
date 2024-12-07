@@ -18,7 +18,7 @@ const ArtworkPost = sequelize.define('ArtworkPost', {
   },
   title: { type: DataTypes.STRING(100), allowNull: false },
   description: { type: DataTypes.TEXT },
-  image_url: { type: DataTypes.STRING, allowNull: false },
+  image_data: { type: DataTypes.BLOB, allowNull: false },
   tags: { type: DataTypes.STRING },
   created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 }, {

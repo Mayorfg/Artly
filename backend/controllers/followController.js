@@ -71,7 +71,7 @@ exports.getFollowing = async (req, res) => {
 
     const following = await Follow.findAll({
       where: { follower_id: userId },
-      include: [{ model: User, as: 'Following', attributes: ['user_id', 'name', 'profile_picture_url'] }],
+      include: [{ model: User, as: 'Following', attributes: ['user_id', 'name', 'profile_picture_data'] }],
     });
 
     res.json(following.map(f => f.Following));
@@ -86,7 +86,7 @@ exports.getFollowers = async (req, res) => {
 
     const followers = await Follow.findAll({
       where: { following_id: userId },
-      include: [{ model: User, as: 'Follower', attributes: ['user_id', 'name', 'profile_picture_url'] }],
+      include: [{ model: User, as: 'Follower', attributes: ['user_id', 'name', 'profile_picture_data'] }],
     });
 
     res.json(followers.map(f => f.Follower));
@@ -112,7 +112,7 @@ exports.getFollowingArtworks = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['user_id', 'name', 'profile_picture_url'],
+          attributes: ['user_id', 'name', 'profile_picture_data'],
         },
       ],
       order: [['created_at', 'DESC']],

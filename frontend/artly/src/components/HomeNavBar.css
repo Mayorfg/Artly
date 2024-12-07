@@ -1,0 +1,21 @@
+/* src/components/NavBar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .navbar-left .logo {
+    width: 50px;
+  }
+  .navbar-center .nav-button {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+  }
+  .navbar-right .nav-button {
+    padding: 5px;
+    cursor: pointer;
+    color: rgb(81, 81, 81);
+    text-decoration: none;
+  }

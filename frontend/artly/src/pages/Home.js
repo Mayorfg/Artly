@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
 import { Container, Row, Col } from 'react-bootstrap';
+import './Home.css';
 
 function Home() {
   const [artworks, setArtworks] = useState([]);
-
+  
   useEffect(() => {
     api.get('/artworks/featured')
       .then(response => {
-        setArtworks(response.data);
+        const artwork_data = response.data;
+        if (typeof artwork_data.image_data === 'string' && !artwork_data.image_data.startsWith('data:image')) {
+          // Convert binary data to base64 and prepend the data URI
+          artwork_data.image_data = `data:image/png;base64,${artwork_data.image_data}`;
+        }
+        setArtworks(artwork_data)
       })
       .catch(error => {
         console.error('Error fetching artworks:', error);
@@ -24,7 +30,7 @@ function Home() {
             <Col key={index} md={4}>
               <figure>
                 <img
-                  src={artwork.image_url}
+                  src={artwork.image_data}
                   alt={`Artwork by ${artwork.User.name}`}
                   style={{ width: '100%', height: 'auto' }}
                 />

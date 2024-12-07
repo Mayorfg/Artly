@@ -89,9 +89,15 @@ exports.getProfile = async (req, res) => {
   try {
     const user = await User.findOne({where: {name: req.params.user_id } });
     if (!user) return res.status(404).json({ error: 'User not found' });
+    // Convert profile picture data to base64 if it exists
+    if (user.profile_picture_data) {
+      const buffer = Buffer.from(user.profile_picture_data);
+      user.profile_picture_data = buffer.toString('base64');
+    }
     res.json(user);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.log("error");
+    res.status(400).json({ error: error.message })  ;
   }
 };
 
@@ -112,12 +118,14 @@ exports.updateProfilePicture = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-    const profile_picture_url = `/uploads/${req.file.filename}`;
+    const profile_picture_data = req.file.buffer;
     await User.update(
-      { profile_picture_url },
+      { profile_picture_data: profile_picture_data },
       { where: { user_id: req.user.user_id } }
     );
-    res.json({ message: 'Profile picture updated successfully.', profile_picture_url });
+    // Send the base64-encoded image data in the response
+    const base64Data = profile_picture_data.toString('base64');
+    res.json({ message: 'Profile picture updated successfully.', profile_picture_data: base64Data });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

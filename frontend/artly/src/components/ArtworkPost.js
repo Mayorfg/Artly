@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import defaultProfileIcon from '../assets/profile-icon.png';
 
 const ArtworkPost = ({ artwork }) => {
-  const artistProfilePicture = artwork.User.profile_picture_url || defaultProfileIcon;
+  const artistProfilePicture = artwork.User.profile_picture_data || defaultProfileIcon;
 
   const handlePurchase = () => {
     // Implement the purchase logic here
@@ -26,7 +26,7 @@ const ArtworkPost = ({ artwork }) => {
           <p>{artwork.User.name}</p>
         </Link>
       </div>
-      <img src={artwork.image_url} alt={artwork.title} />
+      <img src={artwork.image_data} alt={artwork.title} />
       <h3>{artwork.title}</h3>
       <p>{artwork.description}</p>
       <LikeButton postId={artwork.post_id} />
